@@ -11,9 +11,9 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        require_once './dao/ConnectionDb-class.php';
-        $conn = new ConnectionDb();
-        var_dump($conn)
+        require_once './dao/CoordinateDAO-Class.php';
+        $conn = CoordinateDAO::SelectCoordinateImei('1234');
+        var_dump($conn);
         ?>
     </body>
 </html>
