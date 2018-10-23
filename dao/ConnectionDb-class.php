@@ -14,7 +14,7 @@ class ConnectionDb {
 
     function __construct() {
         $this->url = 'localhost';
-        $this->dbName = '';
+        $this->dbName = 'dbwebservice';
         $this->userName = 'root';
         $this->passaword = '';
     }
