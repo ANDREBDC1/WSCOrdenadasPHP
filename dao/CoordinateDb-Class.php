@@ -5,6 +5,7 @@
  *
  * @author Usuario
  */
+include ('Connection-Class.php');
 class CoordinateDb {
 
     private $pdo;
@@ -82,9 +83,9 @@ class CoordinateDb {
         try {
             $this->Connect();
             $query = "SELECT * FROM  Cordenadas";
-            $result = $this->pdo->query($query);
-
-            $row = $result->fetchAll(PDO::FETCH_ASSOC);
+            $stmt = $this->pdo->query($query);
+            //$stmt->execute();
+            $row = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             return $row;
         } catch (Exception $ex) {
@@ -97,10 +98,12 @@ class CoordinateDb {
             $this->Connect();
             $query = "SELECT * FROM  Cordenadas WHERE IMEI = :IMEI";
             $stmt = $this->pdo->prepare($query);
-            $result = $stmt->bindParam(':IMEI', $imei);
-            $row = $result->fetchAll(PDO::FETCH_ASSOC);
+            $stmt->bindParam(':IMEI', $imei);
+            $stmt->execute();
+            $rows = $stmt->fetchAll( PDO::FETCH_ASSOC );
+            
 
-            return $row;
+            return $rows;
         } catch (Exception $ex) {
             echo 'Erro ao Selecionar: ' . $ex->getMessage();
         }
