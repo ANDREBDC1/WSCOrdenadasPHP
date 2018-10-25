@@ -6,6 +6,7 @@
  * @author Usuario
  */
 include ('Connection-Class.php');
+
 class CoordinateDb {
 
     private $pdo;
@@ -100,13 +101,22 @@ class CoordinateDb {
             $stmt = $this->pdo->prepare($query);
             $stmt->bindParam(':IMEI', $imei);
             $stmt->execute();
-            $rows = $stmt->fetchAll( PDO::FETCH_ASSOC );
-            
+            $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
 
             return $rows;
         } catch (Exception $ex) {
             echo 'Erro ao Selecionar: ' . $ex->getMessage();
         }
+    }
+
+    public function DeleteId($Id) {
+        $this->Connect();
+        $query = "DELETE FROM Cordenadas WHERE Id= :Id";
+        $stmt = $this->pdo->prepare($query);
+        $stmt->bindParam(':Id', $Id, PDO::PARAM_INT);
+        $result = $stmt->execute();
+        return $result;
     }
 
 }

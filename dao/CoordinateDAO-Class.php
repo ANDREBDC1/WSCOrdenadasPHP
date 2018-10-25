@@ -2,7 +2,7 @@
 /**
  * Description of CoordinateDAO-Class
  *
- * @author Usuario
+ * @author André Rian
  */
 include ('CoordinateDb-Class.php');
 class CoordinateDAO {
@@ -28,6 +28,12 @@ class CoordinateDAO {
     public static function UpadateCoordinate($id, $latitude, $logitude, $data, $imei) {
         $con = new CoordinateDb();
         $result = $con->Upadate($id, $latitude, $logitude, $data, $imei);
+        return $result;
+    }
+    
+    public static function DeleteCoordinate($Id) {
+        $con = new CoordinateDb();
+        $result = $con->DeleteById($Id);
         return $result;
     }
        
