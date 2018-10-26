@@ -30,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } else {
         $response ['msg'] = "Erro paramentro incorreto!";
         $response ['erro'] = true;
-        echo json_encode($response[0]);
+        echo json_encode($response);
     }
 } else if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
 

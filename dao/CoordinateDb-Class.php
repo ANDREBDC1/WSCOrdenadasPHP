@@ -19,9 +19,11 @@ class CoordinateDb {
         try {
             if ($this->pdo == null) {
                 $this->pdo = new PDO('mysql:host=' . Connection::$URL . ';dbname=' . Connection::$DB_NAME, Connection::$USER_NAME, Connection::$PASSAWORD);
+                $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             }
         } catch (Exception $ex) {
             echo 'Erro ao conectar com o MySQL: ' . $ex->getMessage();
+            exit;
         }
     }
 
