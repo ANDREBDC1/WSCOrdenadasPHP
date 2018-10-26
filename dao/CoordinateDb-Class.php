@@ -60,7 +60,7 @@ class CoordinateDb {
     public function Upadate($id, $latitude, $logitude, $data, $imei) {
         try {
             $this->Connect();
-            $query = "UPDATE Cordenadas SET Id= :Id, Latitude=:Latitude,Longitude=:Longitude,Data=:Data,IMEI= :IMEI  WHERE Id= :Id";
+            $query = "UPDATE Cordenadas SET Id=:Id, Latitude=:Latitude,Longitude=:Longitude,Data=:Data,IMEI=:IMEI  WHERE Id=:Id";
             $stmt = $this->pdo->prepare($query);
             $stmt->bindParam(':Latitude', $latitude, PDO::PARAM_INT);
             $stmt->bindParam(':Longitude', $logitude, PDO::PARAM_INT);
@@ -115,5 +115,4 @@ class CoordinateDb {
         $result = $stmt->execute();
         return $result;
     }
-
 }
