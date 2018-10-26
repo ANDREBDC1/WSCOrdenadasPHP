@@ -10,16 +10,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $json = file_get_contents('php://input');
     $obj = json_decode($json, true);
-    $result = CoordinateDAO::InsertCoordinate($obj->Latitude, $obj->Logitude, DateWs::GetCurrentDate(), $obj->IMEI);
+    $result = CoordinateDAO::InsertCoordinate($obj["Latitude"], $obj['Longitude'], DateWs::GetCurrentDate(), $obj['IMEI']);
     if ($result) {
-        $response = array('msg' => "Cadastrado com sucesso!",
-            'erro' => false
-        );
+        $response ['msg'] = "Cadastrado realizado com sucesso!";
+        $response ['erro'] = false;
+        
         echo json_encode($response);
     } else {
-        $response = array('msg' => "Erro ao inserir!",
-            'erro' => true
-        );
+        $response ['msg'] = "Erro ao cadastra!";
+        $response ['erro'] = true;
         echo json_encode($response);
     }
 } else if ($_SERVER['REQUEST_METHOD'] === 'GET') {
@@ -27,33 +26,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (count($_GET) > 0) {
         $imei = $_GET['IMEI'];
         $result = CoordinateDAO::SelectCoordinateImei($imei);
-        
-        $response ['json'] = $result;
-        $response ['erro'] = false;
-        echo json_encode($response);
+        echo json_encode($result);
     } else {
         $response ['msg'] = "Erro paramentro incorreto!";
         $response ['erro'] = true;
-        echo json_encode($response);
+        echo json_encode($response[0]);
     }
 } else if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
 
 
-    if ($_GET['Id'] != null) {
-
+    if (count($_GET) > 0) {
+        
         $id = $_GET['Id'];
         $result = CoordinateDAO::DeleteCoordinate($id);
         $response = array($result);
         echo json_encode($response);
     } else {
-        $response = array('msg' => "Erro paramentro incorreto!",
-            'erro' => true
-        );
+         $response ['msg'] = "Erro paramentro incorreto!";
+          $response['erro'] = true;
         echo json_encode($response);
     }
 } else {
-    $response = array('msg' => "Erro requisição não encontrada",
-        'erro' => true
-    );
+    
+     $response ['msg'] = "Erro requisição não encontrada";
+      $response ['erro'] = true;
     echo json_encode($response);
 }

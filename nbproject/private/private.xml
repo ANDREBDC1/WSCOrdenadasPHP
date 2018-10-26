@@ -5,8 +5,8 @@
         <group>
             <file>file:/C:/xampp/htdocs/WSCordenadasPHP/dao/CoordinateDb-Class.php</file>
             <file>file:/C:/xampp/htdocs/WSCordenadasPHP/dao/CoordinateDAO-Class.php</file>
+            <file>file:/C:/xampp/htdocs/WSCordenadasPHP/ServicosWs.php</file>
             <file>file:/C:/xampp/htdocs/WSCordenadasPHP/dao/Connection-Class.php</file>
-            <file>file:/C:/xampp/htdocs/WSCordenadasPHP/index.php</file>
         </group>
     </open-files>
 </project-private>

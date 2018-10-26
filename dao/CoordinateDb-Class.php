@@ -30,8 +30,8 @@ class CoordinateDb {
             $this->Connect();
             $query = "INSERT INTO Cordenadas (Latitude,Longitude,Data,IMEI) VALUES(:Latitude,:Longitude,:Data,:IMEI)";
             $stmt = $this->pdo->prepare($query);
-            $stmt->bindParam(':Latitude', $latitude);
-            $stmt->bindParam(':Longitude', $logitude);
+            $stmt->bindParam(':Latitude', $latitude,PDO::PARAM_INT);
+            $stmt->bindParam(':Longitude', $logitude,PDO::PARAM_INT);
             $stmt->bindParam(':Data', $data);
             $stmt->bindParam(':IMEI', $imei);
             $result = $stmt->execute();
@@ -48,15 +48,12 @@ class CoordinateDb {
         try {
             $this->Connect();
             $query = "DELETE FROM Cordenadas WHERE Id= :Id";
-            $stmt = $PDO->prepare($sql);
-            $stmt->bindParam(':Id', $Id);
+            $stmt = $this->pdo->prepare($query);
+            $stmt->bindParam(':Id', $Id, PDO::PARAM_INT);
             $result = $stmt->execute();
-            if (!$result) {
-                return FALSE;
-            }
-            return TRUE;
+            return $result;
         } catch (Exception $ex) {
-            echo 'Erro ao Deletar: ' . $ex->getMessage();
+            return false;
         }
     }
 
