@@ -14,20 +14,18 @@ class ConnectionDb {
 
     function __construct() {
         $this->url = 'localhost';
-        $this->dbName = 'dbwebservice';
-        $this->userName = 'root';
-        $this->passaword = '';
+        $this->dbName = 'id7100981_db_cordenadas';
+        $this->userName = 'id7100981_rian';
+        $this->passaword = 'andre';
     }
 
     public function Connect() {
         try {
             if ($this->conn == null) {
-                $connec = new PDO($this->url, $this->userName, $this->passaword);
                 $this->conn = mysqli_connect($this->url, $this->userName, $this->passaword, $this->dbName) or date('Erro de conexão!');
                 return $this->conn;
             }
-        } catch (Exception $ex) {
-            
+        } catch (Exception $ex) {    
         }
 
         return $this->conn;
